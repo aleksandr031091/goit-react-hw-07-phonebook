@@ -1,0 +1,14 @@
+.item:not(:last-child) {
+  margin-bottom: 10px;
+}
+.button {
+  margin-left: 10px;
+  background-color: transparent;
+  border: 1px solid silver;
+  border-radius: 5px;
+  outline: none;
+}
+.button:hover,
+:focus {
+  border: 1px solid blue;
+}

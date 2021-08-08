@@ -1,0 +1,32 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  width: 400px;
+  padding: 10px;
+  border: 1px solid silver;
+}
+.label {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
+}
+.input {
+  width: 150px;
+  border: 1px solid silver;
+  outline: none;
+}
+.input:focus {
+  border: 1px solid blue;
+}
+.button {
+  background: transparent;
+  border: 1px solid silver;
+}
+.button:hover,
+:focus {
+  border: 1px solid blue;
+}
+.alert {
+  font-weight: 700;
+  color: tomato;
+}
