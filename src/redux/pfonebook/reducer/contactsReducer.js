@@ -1,10 +1,16 @@
 import { createReducer } from "@reduxjs/toolkit";
 import {
+  getContactsRequest,
   getContactsSuccess,
+  getContactsError,
+  addContactRequest,
   addContactSuccess,
+  addContactError,
+  deleteContactRequest,
   deleteContactSuccess,
+  deleteContactError,
   filterContact,
-} from "../actions/contact-action";
+} from "../actions/contactActions";
 
 const items = createReducer([], {
   [getContactsSuccess]: (_, { payload }) => [...payload],
