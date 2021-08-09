@@ -1,7 +1,16 @@
 import { combineReducers } from "redux";
-import { items, filter } from "../reducers/contact-reducer";
+import {
+  contacts,
+  filter,
+  loading,
+  error,
+  alertContact,
+} from "../reducer/contactsReducer";
 
 export default combineReducers({
-  items,
+  items: contacts,
   filter,
+  loading,
+  error,
+  alert: alertContact,
 });

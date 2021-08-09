@@ -2,11 +2,14 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import {
-  addContacts,
   alertContacts,
   resetAlert,
-} from "../../redux/contact/contactActions";
-import { v4 as uuidv4 } from "uuid";
+} from "../../redux/pfonebook/actions/contactActions";
+import { addContact } from "../../redux/pfonebook/operations/contactsOperation";
+import {
+  contactsSelector,
+  errorSelector,
+} from "../../redux/pfonebook/selectors/contactSelectors";
 import css from "./ContactForm.module.css";
 
 const initialState = { name: "", number: "" };
@@ -17,7 +20,7 @@ class ContactForm extends Component {
   onHandleChange = (e) => {
     const { name, value } = e.target;
 
-    if (this.props.error) {
+    if (this.props.alert) {
       this.props.resetAlert();
     }
     this.setState({ [name]: value });
@@ -36,9 +39,8 @@ class ContactForm extends Component {
     ) {
       this.props.alertContacts("This contact is already in contacts");
     } else {
-      this.props.addContacts({
+      this.props.addContact({
         ...this.state,
-        id: uuidv4(),
       });
       this.setState({ ...initialState });
     }
@@ -48,7 +50,7 @@ class ContactForm extends Component {
     const { name, number } = this.state;
     return (
       <>
-        <p className={css.alert}>{this.props.error}</p>
+        <p className={css.alert}>{this.props.alert}</p>
         <form className={css.form} onSubmit={this.onHandleSubmit}>
           <label className={css.label}>
             Name
@@ -86,16 +88,17 @@ class ContactForm extends Component {
 }
 
 const mstp = (state) => ({
-  contacts: state.contacts,
-  error: state.error,
+  contacts: contactsSelector(state),
+  error: errorSelector(state),
+  alert: state.contacts.alert,
 });
 
-export default connect(mstp, { addContacts, alertContacts, resetAlert })(
+export default connect(mstp, { addContact, alertContacts, resetAlert })(
   ContactForm
 );
 
 ContactForm.propTypes = {
-  addContacts: PropTypes.func.isRequired,
+  addContact: PropTypes.func.isRequired,
   alertContacts: PropTypes.func.isRequired,
   resetAlert: PropTypes.func.isRequired,
 };

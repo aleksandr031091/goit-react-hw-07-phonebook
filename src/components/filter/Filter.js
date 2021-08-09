@@ -1,8 +1,10 @@
 import React from "react";
 import { connect } from "react-redux";
-import PropTypes from "prop-types";
-import { filterContacts } from "../../redux/contact/contactActions";
+// import PropTypes from "prop-types";
+// import { filterContacts } from "../../redux/contact/contactActions";
 import css from "./Filter.module.css";
+import { filterSelector } from "../../redux/pfonebook/selectors/contactSelectors";
+import { filterContact } from "../../redux/pfonebook/actions/contactActions";
 
 const Filter = ({ value, setNewFilterContacts }) => {
   const onHandleChange = (e) => {
@@ -26,13 +28,13 @@ const Filter = ({ value, setNewFilterContacts }) => {
 
 const mstp = (state) => {
   return {
-    value: state.filter,
+    value: filterSelector(state),
   };
 };
 
-export default connect(mstp, { setNewFilterContacts: filterContacts })(Filter);
+export default connect(mstp, { setNewFilterContacts: filterContact })(Filter);
 
-Filter.propTypes = {
-  value: PropTypes.string.isRequired,
-  setNewFilterContacts: PropTypes.func.isRequired,
-};
+// Filter.propTypes = {
+//   value: PropTypes.string.isRequired,
+//   setNewFilterContacts: PropTypes.func.isRequired,
+// };
