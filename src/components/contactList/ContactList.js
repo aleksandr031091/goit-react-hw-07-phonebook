@@ -1,15 +1,11 @@
 import React, { Component } from "react";
-
 import { connect } from "react-redux";
 // import PropTypes from "prop-types";
 import {
   deleteContact,
   getContacts,
 } from "../../redux/pfonebook/operations/contactsOperation";
-import {
-  getFilteredContact,
-  getContactById,
-} from "../../redux/pfonebook/selectors/contactSelectors";
+import { getFilteredContact } from "../../redux/pfonebook/selectors/contactSelectors";
 import css from "./ContactList.module.css";
 
 class ContactList extends Component {
@@ -43,8 +39,6 @@ const mstp = (state) => {
 };
 
 export default connect(mstp, { deleteContact, getContacts })(ContactList);
-
-// export default connect(mstp, { getContactById })(ContactList);
 
 // ContactList.propTypes = {
 //   contacts: PropTypes.arrayOf(
