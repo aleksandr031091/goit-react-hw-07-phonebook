@@ -38,8 +38,11 @@ const loading = createReducer(false, {
 });
 
 const error = createReducer("", {
+  [addContactRequest]: () => true,
   [addContactError]: (_, { payload }) => payload,
+  [deleteContactRequest]: () => true,
   [deleteContactError]: (_, { payload }) => payload,
+  [getContactsRequest]: () => true,
   [getContactsError]: (_, { payload }) => payload,
 });
 
